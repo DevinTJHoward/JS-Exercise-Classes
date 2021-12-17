@@ -89,7 +89,13 @@ fill(gallons){
 }
 drive(distance){
 this.odometer = distance + this.odometer;
-this.tank = distance - this.milesPerGallon ;
+this.tank = this.tank - (distance / this.milesPerGallon)
+
+if (this.tank <= 0){
+  
+  this.tank = 0
+  return `I ran out of fuel at ${this.odometer - 1} miles!`
+}
 }
 }
 
@@ -136,11 +142,11 @@ class Instructor extends Lambdasian{
     this.favLanguage = k.favLanguage;
     this.catchPhrase = k.catchPhrase;
 }
-demo(){
-
+demo(subject){
+return `Today we are learning about ${subject}`;
 }
-grade(){
-
+grade(student,subject){
+return `${student.name} receives a perfect score on ${subject}`;
 }
 }
 /*
@@ -169,11 +175,10 @@ class Student extends Lambdasian{
      return `Loving ${this.favSubjects}`;
    }
    PRAssignment(subject){
-    
-return `${Student.name} has submitted a PR for ${subject}`;
+    return `${Student.name} has submitted a PR for ${subject}`;
    }
-   sprintChallenge(){
-
+   sprintChallenge(subject){
+   return `${Student.name} has begun sprint challenge on ${subject}`;
    }
 }
 
@@ -196,11 +201,11 @@ class ProjectManager extends Instructor{
      this.gradClassName = x.gradClassName;
      this.favInstructor = x.favInstructor;
    }
-   standUp(){
-
+   standUp(web50){
+    return `${this.name} announces to ${web50}, @channel standy times`;
    }
-   debugsCode(){
-
+   debugsCode(student, subject){
+return `${this.name} debugs ${student.name}'s code on ${subject}`;
    }
 }
 /*
